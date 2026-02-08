@@ -39,7 +39,6 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [isUnlocked, setIsUnlocked] = useState(false)
   const [error, setError] = useState(false)
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [isLoading, setIsLoading] = useState(false)
   const [proposalAccepted, setProposalAccepted] = useState(false)
   const [showMemories, setShowMemories] = useState(false)
@@ -59,14 +58,7 @@ const App = () => {
   const SECRET_KEY = '2510'
   const progress = Math.min(password.length / 4, 1)
   const manTopOffset = -300 + progress * 300
-  const girlOpacity = 0.3 + progress * 0.7
   const roomScale = 1.1 - progress * 0.1
-
-  useEffect(() => {
-    const handleMove = (e: MouseEvent) => setMousePos({ x: e.clientX, y: e.clientY })
-    window.addEventListener('mousemove', handleMove)
-    return () => window.removeEventListener('mousemove', handleMove)
-  }, [])
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value.slice(0, 4).replace(/[^0-9]/g, '')
